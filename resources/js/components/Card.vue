@@ -48,6 +48,7 @@ export default {
   data() {
     return {
       cart: {},
+      quantity: 0,
     };
   },
   methods: {

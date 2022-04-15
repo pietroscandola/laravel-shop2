@@ -244,7 +244,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ["product"],
   data: function data() {
     return {
-      cart: {}
+      cart: {},
+      quantity: 0
     };
   },
   methods: {
@@ -13290,7 +13291,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Laravel\laravel-shop2\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\pietr\Desktop\laravel-shop-master\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
