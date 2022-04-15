@@ -26,58 +26,22 @@
 
     <!-- ALL products -->
     <div class="row">
-      <div class="col-4 py-3" v-for="product in products" :key="product.id">
-        <div class="card" style="width: 18rem">
-          <img :src="product.image" class="card-img-top" :alt="product.name" />
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">
-              {{ product.description }}
-            </p>
-            <p class="card-text text-muted">{{ product.price }}€</p>
-          </div>
-          <div
-            v-if="product.brand"
-            class="
-              card-footer
-              d-flex
-              justify-content-between
-              align-items-center
-            "
-          >
-            <h5>
-              <span :class="`badge badge-pill badge-${product.brand.color}`">{{
-                product.brand.name
-              }}</span>
-            </h5>
-            <div class="d-flex justify-content-between align-items-center">
-              <i
-                role="button"
-                class="fa-solid fa-circle-minus fa-lg text-danger"
-                @click="removeProductToCartArray(product.id)"
-              ></i>
-              <button
-                class="btn btn-primary mx-1"
-                @click="addProductToCartArray(product.id)"
-              >
-                <i class="fa-solid fa-cart-arrow-down"></i>
-                <i class="fa-solid fa-cart-plus"></i>
-              </button>
-              <i
-                role="button"
-                class="fa-solid fa-circle-plus fa-lg text-success"
-              ></i>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Card
+        @on-product-in-cart="setCart"
+        v-for="product in products"
+        :key="product.id"
+        :product="product"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Card from "./Card.vue";
+
 export default {
   name: "App",
+  components: { Card },
   data() {
     return {
       products: null,
@@ -113,14 +77,9 @@ export default {
         })
         .then(() => {});
     },
-    addProductToCartArray(id) {
-      this.cart.push(id);
-    },
-    removeProductToCartArray(id) {
-      const index = this.cart.indexOf(id);
-      if (index >= 0) {
-        this.cart.splice(index, 1); // 2nd parameter means remove one item only
-      }
+
+    setCart(cart) {
+      this.cart.push(cart);
     },
 
     /* addProductToCart() {
